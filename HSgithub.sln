@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanTransition", "LeanTransition.csproj", "{EE38280A-E50F-EB2A-352B-72DBF1BE4D17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanGUI", "LeanGUI.csproj", "{39D3D179-920F-7EC5-3252-AE6D963C6BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{BBBDFFD3-16CA-99B6-0FC3-E4730AC69D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanCommon", "LeanCommon.csproj", "{6F8B3F02-6C01-D547-AFD4-0BA05F26FEDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE38280A-E50F-EB2A-352B-72DBF1BE4D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE38280A-E50F-EB2A-352B-72DBF1BE4D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE38280A-E50F-EB2A-352B-72DBF1BE4D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE38280A-E50F-EB2A-352B-72DBF1BE4D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D3D179-920F-7EC5-3252-AE6D963C6BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D3D179-920F-7EC5-3252-AE6D963C6BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D3D179-920F-7EC5-3252-AE6D963C6BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D3D179-920F-7EC5-3252-AE6D963C6BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBDFFD3-16CA-99B6-0FC3-E4730AC69D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBDFFD3-16CA-99B6-0FC3-E4730AC69D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBDFFD3-16CA-99B6-0FC3-E4730AC69D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBDFFD3-16CA-99B6-0FC3-E4730AC69D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8B3F02-6C01-D547-AFD4-0BA05F26FEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8B3F02-6C01-D547-AFD4-0BA05F26FEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8B3F02-6C01-D547-AFD4-0BA05F26FEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8B3F02-6C01-D547-AFD4-0BA05F26FEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

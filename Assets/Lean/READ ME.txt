@@ -1,0 +1,2 @@
+--> Pour les anims etc utiliser tween
+lire doc si besoin
