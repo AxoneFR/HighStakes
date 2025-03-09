@@ -324,45 +324,59 @@ public class GameAlgorithm : Turn
     // Gère les actions du joueur IA pendant son tour.
     public IEnumerator AI()
     {
+        // Attend 1 seconde avant d'exécuter la logique de l'IA
         yield return new WaitForSeconds(1);
 
         try
         {
+            // Récupère le joueur actuel
             var p = GetNowTurn();
+            
+            // Vérifie si c'est un joueur contrôlé par l'IA (isHouse == true)
             if (p.isHouse)
             {
+                // Réinitialise les cartes sélectionnées
                 ResetSelected();
 
+                // Si une carte est actuellement jouée (nowCard != null)
                 if (nowCard != null)
                 {
+                    // Cas où l'IA doit sélectionner une carte plus grande que la carte actuelle (status == 0)
                     if (status == 0) 
                     {
-                        List<Card> tmpNeed = new List<Card>();
+                        List<Card> tmpNeed = new List<Card>(); // Liste pour stocker les cartes nécessaires
+
+                        // Parcours les cartes du joueur IA
                         foreach (var tmp in p.cards)
                         {
+                            // Si la carte du joueur est plus grande que la carte actuelle, la sélectionne
                             if (tmp.Rank > nowCard.Rank)
                             {
                                 statusSelected = status;
                                 countSelected = count;
                                 nowCardSelectedLow = tmp;
-                                nowCardSelected = new List<Card> { tmp };
+                                nowCardSelected = new List<Card> { tmp };  // Sélectionne la carte
                                 break;
                             }
                         }
                     }
+                    // Cas où l'IA doit jouer un ensemble de cartes (status == 1)
                     else if (status == 1)
                     {
-                        int need = count;
-                        List<Card> tmpNeed = new List<Card>();
-                        Card tmpCard = null;
+                        int need = count;  // Le nombre de cartes nécessaires
+                        List<Card> tmpNeed = new List<Card>();  // Liste temporaire pour les cartes sélectionnées
+                        Card tmpCard = null;  // Carte temporaire
 
+                        // Parcours les cartes du joueur IA
                         foreach (var tmp in p.cards)
                         {
+                            // Ignore les cartes dont la valeur est inférieure ou égale à la carte actuelle
                             if (tmp.Rank <= nowCard.Rank)
                             {
                                 continue;
                             }
 
+                            // Si aucune carte temporaire n'est définie ou si la carte actuelle est égale à la précédente, ajoute la carte à tmpNeed
                             if (tmpCard == null || tmpCard.Rank == tmp.Rank)
                             {
                                 tmpCard = tmp;
@@ -370,10 +384,12 @@ public class GameAlgorithm : Turn
                             }
                             else
                             {
+                                // Si la carte n'est pas consécutive à la précédente, réinitialise la sélection
                                 tmpNeed = new List<Card>();
                                 tmpCard = null;
                             }
 
+                            // Si le nombre de cartes nécessaires est atteint, sélectionne les cartes
                             if (tmpNeed.Count == need)
                             {
                                 statusSelected = status;
@@ -384,26 +400,32 @@ public class GameAlgorithm : Turn
                             }
                         }
                     }
+                    // Cas où l'IA doit jouer un ensemble de cartes ayant la même couleur (status == 2)
                     else if (status == 2)
                     {
-                        int need = count;
-                        List<Card> tmpNeed = new List<Card>();
-                        Card tmpCard = null;
+                        int need = count;  // Le nombre de cartes nécessaires
+                        List<Card> tmpNeed = new List<Card>();  // Liste temporaire pour les cartes sélectionnées
+                        Card tmpCard = null;  // Carte temporaire
 
+                        // Liste des couleurs possibles
                         List<Card.Suits> suits = new List<Card.Suits> { Card.Suits.Club, Card.Suits.Diamond, Card.Suits.Heart, Card.Suits.Spade };
 
+                        // Parcours les différentes couleurs
                         foreach (var suit in suits)
                         {
-                            tmpNeed = new List<Card>();
-                            tmpCard = null;
+                            tmpNeed = new List<Card>();  // Réinitialise la liste des cartes sélectionnées
+                            tmpCard = null;  // Réinitialise la carte temporaire
 
+                            // Parcours les cartes du joueur IA
                             foreach (var tmp in p.cards)
                             {
+                                // Ignore les cartes dont la valeur est inférieure ou égale à la carte actuelle ou qui ne correspondent pas à la couleur
                                 if (tmp.Rank <= nowCard.Rank || tmp.Suit != suit)
                                 {
                                     continue;
                                 }
 
+                                // Si une carte précédente a été définie, vérifie si la carte est consécutive, sinon réinitialise
                                 if (tmpCard != null && tmpCard.Rank + 1 != tmp.Rank)
                                 {
                                     tmpNeed = new List<Card>();
@@ -412,6 +434,7 @@ public class GameAlgorithm : Turn
                                 tmpCard = tmp;
                                 tmpNeed.Add(tmp);
 
+                                // Si le nombre de cartes nécessaires est atteint, sélectionne les cartes
                                 if (tmpNeed.Count == need)
                                 {
                                     statusSelected = status;
@@ -422,33 +445,33 @@ public class GameAlgorithm : Turn
                                 }
                             }
                         }
-
-
                     }
                 }
+                // Si aucune carte n'est actuellement jouée, l'IA sélectionne la première carte de sa main
                 else
                 {
                     statusSelected = 0;
                     countSelected = 1;
-                    nowCardSelectedLow = p.cards[0];
-                    nowCardSelected = new List<Card> { p.cards[0] };
+                    nowCardSelectedLow = p.cards[0];  // Sélectionne la première carte
+                    nowCardSelected = new List<Card> { p.cards[0] };  // Sélectionne une seule carte
                 }
 
+                // Si des cartes ont été sélectionnées, soumet la sélection
                 if (nowCardSelected?.Count > 0)
                 {
                     SubmitClick();
                 }
+                // Sinon, passe son tour
                 else
                 {
                     PassClick();
                 }
-
-
             }
         }
         catch
         {
-
+            // Gère les erreurs potentielles (dans ce cas, ne fait rien)
         }
     }
+
 }
